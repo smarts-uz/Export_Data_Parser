@@ -1,10 +1,26 @@
 import os
 import re
+import time
+from tkinter import filedialog
+
+# Display the dialog for browsing files.
+# filename = filedialog.askopenfilename()
+
+# Print the selected file path.
 
 def rd_finder():
     html_text = ''
-    path = "c:/Users/Administrator/Desktop/Work/data/Files"
-    src_html_path ="c:/Users/Administrator/Desktop/Work/data/Ex1"
+
+    path = filedialog.askdirectory()
+    src= filedialog.askopenfilename(
+        filetypes=(
+            ("html files", "*.html"),
+            # ("Python Files", ("*.py", "*.pyx")),
+            # ("All Files", "*.*")
+        )
+    )
+    src_html_path, ext = os.path.split(src)
+
     for root, dirs, files in os.walk(src_html_path):
         for file in files:
             if file.startswith('message') and file.endswith('.html'):
@@ -18,7 +34,7 @@ def rd_finder():
         if bool(x) == True:
             continue
         else:
-            with open(f'c:/res.txt', "a") as f:
+            with open(f'c:/export_data_search.txt', "a") as f:
                 f.write(f'{filename}\n')
 
 
@@ -27,4 +43,5 @@ def rd_finder():
                 # print(html_files)
 
 
-rd_finder()
+if __name__ == '__main__':
+    rd_finder()
