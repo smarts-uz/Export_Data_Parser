@@ -2,7 +2,7 @@ import os
 import re
 import time
 from tkinter import filedialog
-
+from rich import print
 # Display the dialog for browsing files.
 # filename = filedialog.askopenfilename()
 
@@ -20,7 +20,8 @@ def rd_finder():
         )
     )
     src_html_path, ext = os.path.split(src)
-
+    if os.path.exists(f"{path}/All.txt"):
+        os.remove(f"{path}/All.txt")
     for root, dirs, files in os.walk(src_html_path):
         for file in files:
             if file.startswith('message') and file.endswith('.html'):
@@ -32,22 +33,21 @@ def rd_finder():
     for filename in list_dir:
         x = re.search(f'{filename}', html_text)
         if bool(x) == True:
-            continue
+            print(f'{filename} [green]found')
         else:
-            with open(f'c:/export_data_search.txt', "a") as f:
+            print(f'{filename} [red]not found')
+            with open(f'{path}/All.txt', "a") as f:
                 f.write(f'{filename}\n')
-
-    with open('c:/export_data_search.txt', "r") as f:
+    print('Process Successfully ended!!!!!!!!!!!')
+    print('Process Successfully ended!!!!!!!!!!!')
+    print('Process Successfully ended!!!!!!!!!!!')
+    print('Process Successfully ended!!!!!!!!!!!')
+    with open(f'{path}/All.txt', "r") as f:
         txt = f.read()
-        input(f"path: c:/export_data_search.txt\n"
+        input(f"path: {path}/All.txt\n"
               f"{txt}\n"
               f"press enter to close window")
 
-
-
-                # html_files.append(os.path.join(root, file))
-                # for d in dirs: dirs.remove(d)
-                # print(html_files)
 
 
 if __name__ == '__main__':
