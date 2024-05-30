@@ -37,6 +37,13 @@ def rd_finder():
             with open(f'c:/export_data_search.txt', "a") as f:
                 f.write(f'{filename}\n')
 
+    with open('c:/export_data_search.txt', "r") as f:
+        txt = f.read()
+        input(f"path: c:/export_data_search.txt\n"
+              f"{txt}\n"
+              f"press enter to close window")
+
+
 
                 # html_files.append(os.path.join(root, file))
                 # for d in dirs: dirs.remove(d)
